@@ -54,19 +54,18 @@ RUN apt install curl build-essential gcc make -y
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 WORKDIR ${HOMEDIR}
-RUN git clone https://github.com/lucaspoffo/renet
-WORKDIR ${HOMEDIR}/renet
-# RUN cp ${HOMEDIR}/renet/renet_steam/examples/echo.rs ${HOMEDIR}/renet/renet_steam/src
-# RUN cargo build --release
-# RUN rm /usr/lib/x86_64-linux-gnu/steamclient.so
-# WORKDIR /root/
-# RUN mkdir .steam/
-# RUN mkdir sdk64/
+RUN git clone https://github.com/ForTehLose/renet_docker_test
+WORKDIR ${HOMEDIR}/renet_docker_test
+RUN cargo build --release
+RUN rm /usr/lib/x86_64-linux-gnu/steamclient.so
+WORKDIR /root/
+RUN mkdir .steam/
+RUN mkdir sdk64/
 # RUN  ln -s "${STEAMCMDDIR}/linux64/steamclient.so" "/root/.steam/sdk64/steamclient.so"
 # Switch to user
-# USER ${USER}
+USER ${USER}
 
-# WORKDIR ${HOMEDIR}
+WORKDIR ${HOMEDIR}
 
-# CMD ["bash", "entry.sh"]
+CMD ["bash", "entry.sh"]
 
